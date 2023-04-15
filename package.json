@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Redis for NestJS",
   "repository": "https://github.com/agent-ly/redis-nestjs",
+  "license": "MIT",
   "type": "module",
   "exports": {
     ".": "./dist/main/mod.js",
