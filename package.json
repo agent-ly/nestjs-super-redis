@@ -1,6 +1,6 @@
 {
   "name": "nestjs-super-redis",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Redis for NestJS",
   "repository": "https://github.com/agent-ly/nestjs-super-redis",
   "license": "MIT",
