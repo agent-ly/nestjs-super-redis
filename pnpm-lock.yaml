@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   nestjs-recipes:
-    specifier: file:../nestjs-recipes
-    version: file:../nestjs-recipes(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1)
+    specifier: ^1.0.1
+    version: 1.0.1(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1)
 
 devDependencies:
   '@nestjs/common':
@@ -1119,6 +1119,29 @@ packages:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
 
+  /nestjs-recipes@1.0.1(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1):
+    resolution: {integrity: sha512-OKph9jw/zfBoolcwqP0IacQXw4qVuDw9wxaHLeJO8FBNdix4Egqo2fF41IU7VUc6o2glfFy7KeSYPNpWJN2k6w==}
+    peerDependencies:
+      '@nestjs/common': ^9.0.0
+      '@nestjs/platform-socket.io': ^9.0.0
+      '@nestjs/websockets': ^9.0.0
+      rxjs: ^7.8.0
+      socket.io: ^4.6.1
+    peerDependenciesMeta:
+      '@nestjs/platform-socket.io':
+        optional: true
+      '@nestjs/websockets':
+        optional: true
+      socket.io:
+        optional: true
+    dependencies:
+      '@nestjs/common': 9.4.0(reflect-metadata@0.1.13)(rxjs@7.8.0)
+      '@nestjs/platform-socket.io': 9.4.0(@nestjs/common@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)
+      '@nestjs/websockets': 9.4.0(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(@nestjs/platform-socket.io@9.4.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
+      rxjs: 7.8.0
+      socket.io: 4.6.1
+    dev: false
+
   /node-fetch@2.6.9:
     resolution: {integrity: sha512-DJm/CJkZkRjKKj4Zi4BsKVZh3ValV5IR5s7LVZnW+6YMh0W1BfNA8XSs6DLMGYlId5F3KnA70uu2qepcR08Qqg==}
     engines: {node: 4.x || >=6.0.0}
@@ -1689,29 +1712,3 @@ packages:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
     dev: true
-
-  file:../nestjs-recipes(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1):
-    resolution: {directory: ../nestjs-recipes, type: directory}
-    id: file:../nestjs-recipes
-    name: nestjs-recipes
-    version: 1.0.1
-    peerDependencies:
-      '@nestjs/common': ^9.0.0
-      '@nestjs/platform-socket.io': ^9.0.0
-      '@nestjs/websockets': ^9.0.0
-      rxjs: ^7.8.0
-      socket.io: ^4.6.1
-    peerDependenciesMeta:
-      '@nestjs/platform-socket.io':
-        optional: true
-      '@nestjs/websockets':
-        optional: true
-      socket.io:
-        optional: true
-    dependencies:
-      '@nestjs/common': 9.4.0(reflect-metadata@0.1.13)(rxjs@7.8.0)
-      '@nestjs/platform-socket.io': 9.4.0(@nestjs/common@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)
-      '@nestjs/websockets': 9.4.0(@nestjs/common@9.4.0)(@nestjs/core@9.4.0)(@nestjs/platform-socket.io@9.4.0)(reflect-metadata@0.1.13)(rxjs@7.8.0)
-      rxjs: 7.8.0
-      socket.io: 4.6.1
-    dev: false
