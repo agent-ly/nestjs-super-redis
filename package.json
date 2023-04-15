@@ -8,7 +8,7 @@
   "exports": {
     ".": "./dist/main/mod.js",
     "./socket.io": "./dist/socket.io/mod.js",
-    "./utils": "./dist/util/mod.js"
+    "./util": "./dist/util/mod.js"
   },
   "files": [
     "dist"
