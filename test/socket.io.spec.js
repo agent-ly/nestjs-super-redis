@@ -15,13 +15,13 @@ describe("SocketIoRedisModule", () => {
     module = await Test.createTestingModule({
       imports: [
         RedisModule.forRoot(),
-        SocketIoRedisModule.forAdapter(),
-        SocketIoRedisModule.forEmitter(),
+        SocketIoRedisModule.registerAdapter(),
+        SocketIoRedisModule.registerEmitter(),
       ],
     }).compile();
     await module.init();
   });
-  afterAll(() => module.close());
+  afterAll(() => module && module.close());
   it("adapter constructor should resolve", () =>
     expect(module.get(getRedisAdapterCtorToken())).toBeDefined());
   it("emitter should resolve", () =>

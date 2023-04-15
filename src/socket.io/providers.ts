@@ -14,8 +14,6 @@ import type { RedisClientType } from "redis";
 
 import { MODULE_NAME } from "../core/module-definition.js";
 
-export type { RedisAdapterOptions, RedisEmitterOptions };
-
 export const createSocketIoRedisAdapterProvider = (
   connectionName?: string,
   adapterOptions?: RedisAdapterOptions

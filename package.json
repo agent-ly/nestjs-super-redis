@@ -20,7 +20,7 @@
     "prepack": "pnpm build"
   },
   "dependencies": {
-    "nestjs-recipes": "^1.0.0"
+    "nestjs-recipes": "file:../nestjs-recipes"
   },
   "devDependencies": {
     "@nestjs/common": "^9.4.0",

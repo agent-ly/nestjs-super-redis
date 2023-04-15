@@ -1,30 +1,20 @@
 import { Module, type DynamicModule } from "@nestjs/common";
 
+import type {
+  RegisterAdapterOptions,
+  RegisterEmitterOptions,
+} from "./interfaces.js";
 import {
   createSocketIoRedisAdapterProvider,
   createSocketIoRedisEmitter,
-  type RedisAdapterOptions,
-  type RedisEmitterOptions,
 } from "./providers.js";
-
-export interface ForAdapterOptions {
-  connectionName?: string;
-  adapterOptions?: RedisAdapterOptions;
-}
-
-export interface ForEmitterOptions {
-  isGlobal?: boolean;
-  nsp?: string;
-  connectionName?: string;
-  emitterOptions?: RedisEmitterOptions;
-}
 
 @Module({})
 export class SocketIoRedisModule {
-  static forAdapter({
+  static registerAdapter({
     connectionName,
     adapterOptions,
-  }: ForAdapterOptions = {}): DynamicModule {
+  }: RegisterAdapterOptions = {}): DynamicModule {
     const adapterProvider = createSocketIoRedisAdapterProvider(
       connectionName,
       adapterOptions
@@ -36,12 +26,12 @@ export class SocketIoRedisModule {
     };
   }
 
-  static forEmitter({
+  static registerEmitter({
     isGlobal,
     nsp,
     connectionName,
     emitterOptions,
-  }: ForEmitterOptions = {}): DynamicModule {
+  }: RegisterEmitterOptions = {}): DynamicModule {
     const emitterProvider = createSocketIoRedisEmitter(
       nsp,
       connectionName,

@@ -2,7 +2,7 @@ lockfileVersion: '6.0'
 
 dependencies:
   nestjs-recipes:
-    specifier: ^1.0.0
+    specifier: file:../nestjs-recipes
     version: 1.0.0(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1)
 
 devDependencies:

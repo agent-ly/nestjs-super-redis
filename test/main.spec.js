@@ -15,7 +15,7 @@ describe("RedisModule", () => {
     await module.init();
     redis = module.get(getRedisConnectionToken());
   });
-  afterAll(() => module.close());
+  afterAll(() => module && module.close());
   it("should be defined", () => expect(redis).toBeDefined());
   it("should be ready", () => expect(redis.isReady).toBe(true));
   it("should ping", () => expect(redis.ping()).resolves.toBe("PONG"));
