@@ -1,5 +1,8 @@
 import { Logger } from "@nestjs/common";
-import { createConfigurableConnectionModuleBuilder } from "nestjs-recipes/builders/connection";
+import {
+  autoRetryConnect,
+  createConfigurableConnectionModuleBuilder,
+} from "nestjs-recipes/builders/connection";
 import { createClient } from "redis";
 
 import type {
@@ -12,13 +15,18 @@ export const { OPTIONS_TYPE, ASYNC_OPTIONS_TYPE, ConfigurableModuleClass } =
   createConfigurableConnectionModuleBuilder<
     RedisCoreModuleOptions,
     RedisCoreModuleExtraOptions
-  >(MODULE_NAME, async ({ url, connectionName }) => {
-    const logger = new Logger(`RedisCoreModule(${connectionName})`);
-    logger.log("Establishing connection to Redis server...");
-    const client = createClient({ url });
-    await client.connect();
-    logger.log("Connection established.");
-    return client;
-  })
+  >(
+    MODULE_NAME,
+    async ({ url, connectionName, retryAttempts = 6, retryDelay = 6e3 }) => {
+      const logger = new Logger(`RedisCoreModule(${connectionName})`);
+      logger.log("Connecting to server ...");
+      return autoRetryConnect(retryAttempts, retryDelay, logger, async () => {
+        const client = createClient({ url });
+        await client.connect();
+        logger.log("Connection established.");
+        return client;
+      });
+    }
+  )
     .setClassMethodName("forRoot")
     .build();
