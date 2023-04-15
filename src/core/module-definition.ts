@@ -8,7 +8,6 @@ import type {
 } from "./interfaces.js";
 
 export const MODULE_NAME = "redis_core_module";
-
 export const { OPTIONS_TYPE, ASYNC_OPTIONS_TYPE, ConfigurableModuleClass } =
   createConfigurableConnectionModuleBuilder<
     RedisCoreModuleOptions,
