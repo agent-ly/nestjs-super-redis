@@ -5,7 +5,7 @@ import { createClient } from "redis";
 import type {
   RedisCoreModuleOptions,
   RedisCoreModuleExtraOptions,
-} from "./interfaces.js";
+} from "./core.interfaces.js";
 
 export const MODULE_NAME = "redis_core_module";
 export const { OPTIONS_TYPE, ASYNC_OPTIONS_TYPE, ConfigurableModuleClass } =

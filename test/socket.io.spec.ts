@@ -1,4 +1,4 @@
-import { Test } from "@nestjs/testing";
+import { Test, type TestingModule } from "@nestjs/testing";
 import { describe, expect, it, beforeAll, afterAll } from "vitest";
 
 import { RedisModule } from "../dist/main/mod.js";
@@ -9,13 +9,12 @@ import {
 } from "../dist/socket.io/mod.js";
 
 describe("SocketIoRedisModule", () => {
-  /** @type {import('@nestjs/testing').TestingModule} */
-  let module;
+  let module: TestingModule;
   beforeAll(async () => {
     module = await Test.createTestingModule({
       imports: [
         RedisModule.forRoot(),
-        SocketIoRedisModule.registerAdapter(),
+        SocketIoRedisModule.registerAdapterCtor(),
         SocketIoRedisModule.registerEmitter(),
       ],
     }).compile();

@@ -7,18 +7,18 @@ import {
   type RedisAdapterOptions,
 } from "@socket.io/redis-adapter";
 import {
-  createSocketIoAdapterProvider,
+  createSocketIoAdapterCtorProvider,
   createSocketIoEmitterProvider,
 } from "nestjs-recipes/builders/connection";
 import type { RedisClientType } from "redis";
 
-import { MODULE_NAME } from "../core/module-definition.js";
+import { MODULE_NAME } from "../core/core.module-definition.js";
 
-export const createSocketIoRedisAdapterProvider = (
+export const createSocketIoRedisAdapterCtorProvider = (
   connectionName?: string,
-  adapterOptions?: RedisAdapterOptions
+  options?: Partial<RedisAdapterOptions>
 ) =>
-  createSocketIoAdapterProvider(
+  createSocketIoAdapterCtorProvider(
     MODULE_NAME,
     connectionName,
     async (client: RedisClientType) => {
@@ -28,7 +28,7 @@ export const createSocketIoRedisAdapterProvider = (
       const adapterConstructor = createRedisAdapter(
         pubClient,
         subClient,
-        adapterOptions
+        options
       );
       return adapterConstructor;
     }
@@ -37,13 +37,13 @@ export const createSocketIoRedisAdapterProvider = (
 export const createSocketIoRedisEmitter = (
   nsp?: string,
   connectionName?: string,
-  emitterOptions?: RedisEmitterOptions
+  options?: RedisEmitterOptions
 ) =>
   createSocketIoEmitterProvider(
     MODULE_NAME,
     connectionName,
     async (client: RedisClientType) => {
-      const emitter = new RedisEmitter(client, emitterOptions, nsp);
+      const emitter = new RedisEmitter(client, options, nsp);
       return emitter;
     }
   );

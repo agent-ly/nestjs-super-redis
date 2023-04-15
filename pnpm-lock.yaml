@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   nestjs-recipes:
-    specifier: ^1.0.1
-    version: 1.0.1(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1)
+    specifier: ^1.0.2
+    version: 1.0.2(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1)
 
 devDependencies:
   '@nestjs/common':
@@ -1119,8 +1119,8 @@ packages:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
 
-  /nestjs-recipes@1.0.1(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1):
-    resolution: {integrity: sha512-OKph9jw/zfBoolcwqP0IacQXw4qVuDw9wxaHLeJO8FBNdix4Egqo2fF41IU7VUc6o2glfFy7KeSYPNpWJN2k6w==}
+  /nestjs-recipes@1.0.2(@nestjs/common@9.4.0)(@nestjs/platform-socket.io@9.4.0)(@nestjs/websockets@9.4.0)(rxjs@7.8.0)(socket.io@4.6.1):
+    resolution: {integrity: sha512-qOd5GD490i7lFTBaK1W/lZ3iXPSYb2n6N5gWjgYgN3rWYr3EPHHXGZYndFjsdpG2WUtuJkGouWX3eFzjiWLsOA==}
     peerDependencies:
       '@nestjs/common': ^9.0.0
       '@nestjs/platform-socket.io': ^9.0.0

@@ -3,18 +3,18 @@ import { Module, type DynamicModule } from "@nestjs/common";
 import type {
   ASYNC_OPTIONS_TYPE,
   OPTIONS_TYPE,
-} from "../core/module-definition.js";
-import { RedisCoreModule } from "../core/module.js";
+} from "../core/core.module-definition.js";
+import { RedisCoreModule } from "../core/core.module.js";
 
 @Module({})
 export class RedisModule {
   static forRoot(url?: string): DynamicModule;
   static forRoot(options?: typeof OPTIONS_TYPE): DynamicModule;
-  static forRoot(
-    optionsOrUrl: string | typeof OPTIONS_TYPE = "redis://localhost:6379"
-  ): DynamicModule {
+  static forRoot(optionsOrUrl?: string | typeof OPTIONS_TYPE): DynamicModule {
     const options =
-      typeof optionsOrUrl === "string" ? { url: optionsOrUrl } : optionsOrUrl;
+      typeof optionsOrUrl === "string"
+        ? { url: optionsOrUrl }
+        : optionsOrUrl ?? {};
     return {
       module: RedisModule,
       imports: [RedisCoreModule.forRoot(options)],
