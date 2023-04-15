@@ -24,6 +24,6 @@ describe("SocketIoRedisModule", () => {
   afterAll(() => module.close());
   it("adapter constructor should resolve", () =>
     expect(module.get(getRedisAdapterCtorToken())).toBeDefined());
-  it("emitter should be defined", () =>
+  it("emitter should resolve", () =>
     expect(module.get(getRedisEmitterToken())).toBeDefined());
 });
