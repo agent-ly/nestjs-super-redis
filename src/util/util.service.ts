@@ -86,4 +86,19 @@ export class RedisUtilService {
     const result = await this.client.del(key);
     return result === 1;
   }
+
+  /**
+   * @param ttl in milliseconds
+   * @returns value returned by callback or null if lock could not be acquired
+   */
+  async withLock<T>(key: string, ttl: number, callback: () => Promise<T>) {
+    if (await this.acquireLock(key, ttl)) {
+      try {
+        return await callback();
+      } finally {
+        await this.releaseLock(key);
+      }
+    }
+    return null;
+  }
 }
