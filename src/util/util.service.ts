@@ -3,17 +3,18 @@ import { ModuleRef } from "@nestjs/core";
 import type { RedisClientType } from "redis";
 
 import { getRedisConnectionToken } from "../common/tokens.util.js";
-import { CONNECTION_NAME_INJECTION_TOKEN } from "./util.constants.js";
+import { CONNECTION_NAME_TOKEN } from "./util.constants.js";
 
 export class RedisUtilService {
-  private readonly client: RedisClientType;
+  private client!: RedisClientType;
 
   constructor(
-    private readonly moduleRef: ModuleRef,
-    @Inject(CONNECTION_NAME_INJECTION_TOKEN)
-    private readonly connectionName: string
-  ) {
-    this.client = this.moduleRef.get<RedisClientType>(
+    @Inject(ModuleRef) private readonly moduleRef: ModuleRef,
+    @Inject(CONNECTION_NAME_TOKEN) private readonly connectionName: string
+  ) {}
+
+  onModuleInit() {
+    this.client = this.moduleRef.get(
       getRedisConnectionToken(this.connectionName),
       { strict: false }
     );
@@ -89,7 +90,7 @@ export class RedisUtilService {
 
   /**
    * @param ttl in milliseconds
-   * @returns value returned by callback or null if lock could not be acquired
+   * @returns value returned by callback or false if lock could not be acquired
    */
   async withLock<T>(key: string, ttl: number, callback: () => Promise<T>) {
     if (await this.acquireLock(key, ttl)) {
@@ -99,6 +100,6 @@ export class RedisUtilService {
         await this.releaseLock(key);
       }
     }
-    return null;
+    return false;
   }
 }

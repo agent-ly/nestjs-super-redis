@@ -18,7 +18,7 @@ export class RedisCoreModule
   implements OnModuleDestroy
 {
   constructor(
-    private readonly moduleRef: ModuleRef,
+    @Inject(ModuleRef) private readonly moduleRef: ModuleRef,
     @Inject(getConnectionNameToken(MODULE_NAME))
     private readonly connectionName: string
   ) {

@@ -1,17 +1,22 @@
 import { Test, type TestingModule } from "@nestjs/testing";
 import { describe, expect, it, beforeAll, afterAll } from "vitest";
 
-import { RedisModule, getRedisConnectionToken } from "../dist/main/mod.js";
+import { RedisModule, getRedisConnectionToken } from "../src/main/mod.js";
 
 describe("RedisModule", () => {
-  let module: TestingModule;
+  let moduleRef: TestingModule;
   beforeAll(async () => {
-    module = await Test.createTestingModule({
-      imports: [RedisModule.forRoot()],
+    moduleRef = await Test.createTestingModule({
+      imports: [
+        RedisModule.forRoot(),
+        RedisModule.forRoot({ connectionName: "test" }),
+      ],
     }).compile();
-    await module.init();
+    await moduleRef.init();
   });
-  afterAll(() => module && module.close());
-  it("should resolve", () =>
-    expect(module.get(getRedisConnectionToken())).toBeDefined());
+  afterAll(() => moduleRef && moduleRef.close());
+  it("should resolve default connection", () =>
+    expect(moduleRef.get(getRedisConnectionToken())).not.toBeNull());
+  it("should resolve named connection", () =>
+    expect(moduleRef.get(getRedisConnectionToken("test"))).not.toBeNull());
 });

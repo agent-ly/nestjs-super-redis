@@ -1,28 +1,28 @@
 import { Test, type TestingModule } from "@nestjs/testing";
 import { describe, expect, it, beforeAll, afterAll } from "vitest";
 
-import { RedisModule } from "../dist/main/mod.js";
+import { RedisModule } from "../src/main/mod.js";
 import {
   SocketIoRedisModule,
   getRedisAdapterCtorToken,
   getRedisEmitterToken,
-} from "../dist/socket.io/mod.js";
+} from "../src/socket.io/mod.js";
 
 describe("SocketIoRedisModule", () => {
-  let module: TestingModule;
+  let moduleRef: TestingModule;
   beforeAll(async () => {
-    module = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
       imports: [
         RedisModule.forRoot(),
         SocketIoRedisModule.registerAdapterCtor(),
         SocketIoRedisModule.registerEmitter(),
       ],
     }).compile();
-    await module.init();
+    await moduleRef.init();
   });
-  afterAll(() => module && module.close());
-  it("adapter constructor should resolve", () =>
-    expect(module.get(getRedisAdapterCtorToken())).toBeDefined());
-  it("emitter should resolve", () =>
-    expect(module.get(getRedisEmitterToken())).toBeDefined());
+  afterAll(() => moduleRef && moduleRef.close());
+  it("should resolve adapter ctor", () =>
+    expect(moduleRef.get(getRedisAdapterCtorToken())).not.toBeNull());
+  it("should resolve emitter", () =>
+    expect(moduleRef.get(getRedisEmitterToken())).not.toBeNull());
 });

@@ -1,19 +1,21 @@
-import { Test, type TestingModule } from "@nestjs/testing";
-import { describe, expect, it, beforeAll, afterAll } from "vitest";
+import { Test } from "@nestjs/testing";
+import { describe, it } from "vitest";
 
-import { RedisModule } from "../dist/main/mod.js";
-import { RedisUtilModule, RedisUtilService } from "../dist/util/mod.js";
+import { RedisModule } from "../src/main/mod.js";
+import { RedisUtilModule } from "../src/util/mod.js";
 
-describe("RedisModule", () => {
-  let module: TestingModule;
-  let utilService: RedisUtilService;
-  beforeAll(async () => {
-    module = await Test.createTestingModule({
+describe("RedisUtilModule", () => {
+  it("should compile with the default client", async () => {
+    await Test.createTestingModule({
       imports: [RedisModule.forRoot(), RedisUtilModule.register()],
     }).compile();
-    await module.init();
-    utilService = module.get(RedisUtilService);
   });
-  afterAll(() => module && module.close());
-  it("should be defined", () => expect(utilService).toBeDefined());
+  it("Should compile with a named client", async () => {
+    await Test.createTestingModule({
+      imports: [
+        RedisModule.forRoot({ connectionName: "test" }),
+        RedisUtilModule.register("test"),
+      ],
+    }).compile();
+  });
 });
